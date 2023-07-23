@@ -7,6 +7,13 @@ class ProfileController extends ChangeNotifier {
     // getprofileModelList();
   }
 
+  String _errorText = "";
+  String get errorText => _errorText;
+  void setErrorText(String value) {
+    _errorText = value;
+    notifyListeners();
+  }
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   void setisLoading(bool value) {
@@ -30,6 +37,26 @@ class ProfileController extends ChangeNotifier {
   void setSelectedColor(String value) {
     _selectedColor = value;
     notifyListeners();
+  }
+
+  bool checkProfileValidity() {
+    if (double.parse(latController.text) > 90 ||
+        double.parse(latController.text) < -90) {
+      setErrorText("Latitude must be between -90 and 90");
+      return false;
+    }
+    if (double.parse(lngController.text) > 180 ||
+        double.parse(lngController.text) < -180) {
+      setErrorText("Longitude must be between -180 and 180");
+      return false;
+    }
+    if (int.parse(fontSizeController.text) > 32 ||
+        int.parse(fontSizeController.text) < 1) {
+      setErrorText("Font size must be between 1 and 32");
+      return false;
+    }
+    setErrorText("");
+    return true;
   }
 
   Future createProfile() async {

@@ -139,6 +139,10 @@ class CreateProfileScreen extends StatelessWidget {
                                             backgroundColor: Colors.green,
                                           ),
                                           onPressed: () {
+                                            if (!profileController
+                                                .checkProfileValidity()) {
+                                              return;
+                                            }
                                             profileController
                                                 .createProfile()
                                                 .then((value) {
@@ -151,7 +155,22 @@ class CreateProfileScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
+                                  profileController.errorText.isNotEmpty
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            profileController.errorText,
+                                            style: appController
+                                                .themeData.textTheme.bodySmall!
+                                                .copyWith(
+                                                    color: appController
+                                                        .themeData
+                                                        .colorScheme
+                                                        .error),
+                                          ),
+                                        )
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
