@@ -26,3 +26,9 @@ Click here for [**Demo Video**](/assets/demo.mov).
 | Welcome Screen                                                              | Home Screen | Create Profile Screen |
 |:----------------------------------------------------------------------------:|:-----------------------------:| :-----------------------------:|
 | <img src="assets/screenshots/welcome_screen.png" title="" alt="Welcome Screen" width="280"> | <img src="assets/screenshots/home_screen.png" title="" alt="Multiple Chats" width="280"> | <img src="assets/screenshots/create_profile.png" title="" alt="Create Profile Screen" width="280"> |
+
+## Author
+- [**Saifudeen Hisham (LinkedIn)**](
+https://www.linkedin.com/in/saifudeenhisham/)
+
+- [**Resume**](assets/Saifudeen%20Hisham%20K%20M's%20Resume.pdf)
