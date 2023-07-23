@@ -11,6 +11,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer2<ProfileController, AppController>(
         builder: (context, profileController, appController, child) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (appController.isFirstLaunch) {
+          appController.setisFirstLaunch(false);
+
+          Navigator.pushNamed(context, "/create_profile_screen");
+        }
+      });
       return Scaffold(
           appBar: AppBar(
             title: const Text("Profile List"),

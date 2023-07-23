@@ -1,6 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends ChangeNotifier {
+  AppController() {
+    checkIsFirstLaunch().then((value) {
+      setisFirstLaunch(value);
+      setisLoading(false);
+    });
+  }
+
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+  void setisLoading(bool value) {
+    _isLoading = value;
+    debugPrint("isLoading: $_isLoading");
+    notifyListeners();
+  }
+
+  bool _isFirstLaunch = false;
+  bool get isFirstLaunch => _isFirstLaunch;
+  void setisFirstLaunch(bool value) {
+    _isFirstLaunch = value;
+    debugPrint("isFirstLaunch: $_isFirstLaunch");
+    notifyListeners();
+  }
+
+  Future<bool> checkIsFirstLaunch() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isFirstLaunch = prefs.getBool('isFirstLaunch');
+    if (isFirstLaunch == null) {
+      prefs.setBool('isFirstLaunch', false);
+      return true;
+    }
+    return false;
+  }
+
   ThemeData _themeData = defaultThemeData;
   ThemeData get themeData => _themeData;
   void setThemeData(ThemeData value) {
