@@ -15,7 +15,7 @@ class Initial extends StatelessWidget {
       } else if (appController.isLoading) {
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       } else {
-        return const HomeScreen();
+        return HomeScreen();
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:klimbb148/models/profile_model.dart';
+import 'package:klimbb148/services/isar_db.dart';
 
 class ProfileController extends ChangeNotifier {
   ProfileController() {
@@ -31,47 +32,6 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<ProfileModel> _profileModelList = [];
-  List<ProfileModel> get profileModelList => _profileModelList;
-  void setprofileModelList(List<ProfileModel> value) {
-    _profileModelList = value;
-    notifyListeners();
-  }
-
-  void addProfileController(ProfileModel profileController) {
-    _profileModelList.add(profileController);
-    notifyListeners();
-  }
-
-  void getprofileModelList() async {
-    debugPrint("Fetching from local storage...");
-    setisLoading(true);
-    // add some dummy data to profileModelList after 3 seconds to simulate a network call
-    Future.delayed(const Duration(seconds: 1), () {
-      _profileModelList.add(ProfileModel(
-          lat: 210,
-          lng: 310,
-          name: "John Doe",
-          fontSize: 12,
-          color: "0xFFFF0000"));
-      _profileModelList.add(ProfileModel(
-          lat: 0,
-          lng: 18,
-          name: "Jane Doe",
-          fontSize: 12,
-          color: "0xFF00FF00"));
-      _profileModelList.add(ProfileModel(
-          lat: 20,
-          lng: 30,
-          name: "John Smith",
-          fontSize: 24,
-          color: "0xFF0000FF"));
-
-      notifyListeners();
-      setisLoading(false);
-    });
-  }
-
   Future createProfile() async {
     debugPrint("Creating profile...");
     setisLoading(true);
@@ -79,13 +39,11 @@ class ProfileController extends ChangeNotifier {
     ProfileModel newProfile = ProfileModel(
         lat: double.parse(latController.text),
         lng: double.parse(lngController.text),
-        name: "John Doe",
         fontSize: int.parse(fontSizeController.text),
         color: _selectedColor);
 
     debugPrint("newProfile: $newProfile");
-
-    _profileModelList.add(newProfile);
+    await IsarService().saveProfiles(newProfile);
     notifyListeners();
     setisLoading(false);
   }
