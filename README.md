@@ -6,11 +6,14 @@ Klimbb148 is an assignment project for **Foyer** (via **Klimbb**).
 It's a simple lightweight location based profile builder app. It's a part of the assignment project for **Foyer** (via **Klimbb**). It encorporates all most all the key concepts that will be used in a real world app. It's a simple app that allows users to create profiles and maintain it.
 
 ## Features
-- Create profile
-- First time launch awareness
-- Location based profile
-- Coordinate based profile
-- Persistent storage
+- Create profile.
+- First time launch awareness.
+- Persistent storage.
+- Manual Coordinate input.
+- MVC architecture.
+- No stateful widgets used.
+- Local database.
+
 
 ## Packages
 - [**Provider**](https://pub.dev/packages/provider) - State management
