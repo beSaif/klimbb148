@@ -117,20 +117,27 @@ class ColorPickerWidget extends StatelessWidget {
                 "Tap the color to change",
                 style: appController.themeData.textTheme.bodySmall,
               ),
-              trailing: ColorIndicator(
-                width: 44,
-                height: 44,
-                borderRadius: 4,
-                color: dialogPickerColor,
-                onSelectFocus: false,
-                onSelect: () async {
-                  final Color colorBeforeDialog = dialogPickerColor;
+              trailing: Material(
+                elevation: 4,
+                child: Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(4),
+                  child: ColorIndicator(
+                    width: 44,
+                    height: 44,
+                    borderRadius: 4,
+                    color: dialogPickerColor,
+                    onSelectFocus: false,
+                    onSelect: () async {
+                      final Color colorBeforeDialog = dialogPickerColor;
 
-                  if (!(await colorPickerDialog())) {
-                    profileController
-                        .setSelectedColor(colorBeforeDialog.value.toString());
-                  }
-                },
+                      if (!(await colorPickerDialog())) {
+                        profileController.setSelectedColor(
+                            colorBeforeDialog.value.toString());
+                      }
+                    },
+                  ),
+                ),
               ),
             ),
           ),

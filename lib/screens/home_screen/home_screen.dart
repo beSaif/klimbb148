@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
           Navigator.pushNamed(context, "/create_profile_screen");
         }
       });
+
       return Scaffold(
           appBar: AppBar(
             title: const Text("Profile List"),
