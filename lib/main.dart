@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
       return SafeArea(
         child: MaterialApp(routes: {
           "/": (context) => const Initial(),
-          "/home_screen": (context) => const HomeScreen(),
+          "/home_screen": (context) => HomeScreen(),
           "/create_profile_screen": (context) => const CreateProfileScreen()
         }, debugShowCheckedModeBanner: false, theme: appController.themeData),
       );

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:klimbb148/controllers/app_controller.dart';
 import 'package:klimbb148/controllers/profile_controller.dart';
 import 'package:klimbb148/screens/home_screen/components/profile_card_list_widget.dart';
+import 'package:klimbb148/services/isar_db.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final IsarService isarService = IsarService();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,11 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Profile List"),
             actions: [
-              // add + button to add new profile
+              IconButton(
+                  onPressed: () {
+                    isarService.cleanDb();
+                  },
+                  icon: const Icon(Icons.delete)),
               IconButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/create_profile_screen");
@@ -32,19 +39,10 @@ class HomeScreen extends StatelessWidget {
           ),
           body: profileController.isLoading
               ? const Center(child: CircularProgressIndicator())
-              : profileController.profileModelList.isNotEmpty
-                  ? ProfileCardList(
-                      profileController: profileController,
-                      appController: appController,
-                    )
-                  : Center(
-                      child: Text(
-                      "No profiles found. Please add a profile.",
-                      style:
-                          appController.themeData.textTheme.bodySmall!.copyWith(
-                        color: appController.themeData.colorScheme.primary,
-                      ),
-                    )));
+              : ProfileCardList(
+                  profileController: profileController,
+                  appController: appController,
+                ));
     });
   }
 }
