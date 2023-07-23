@@ -17,6 +17,11 @@ class IsarService {
     isar.writeTxnSync<int>(() => isar.profileModels.putSync(newProfile));
   }
 
+  Future<ProfileModel?> getProfile(int id) async {
+    final isar = await db;
+    return await isar.profileModels.get(id);
+  }
+
   Future<List<ProfileModel>> getAllProfiles() async {
     final isar = await db;
     return await isar.profileModels.where().findAll();

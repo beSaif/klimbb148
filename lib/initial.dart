@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 import 'package:klimbb148/controllers/app_controller.dart';
 import 'package:klimbb148/screens/first_launch_screen/first_launch_screen.dart';
 import 'package:klimbb148/screens/home_screen/home_screen.dart';
@@ -11,6 +12,7 @@ class Initial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppController>(builder: (context, appController, child) {
       if (appController.isFirstLaunch) {
+        appController.addDefaultProfile();
         return const FirstLaunchScreen();
       } else if (appController.isLoading) {
         return const Scaffold(body: Center(child: CircularProgressIndicator()));

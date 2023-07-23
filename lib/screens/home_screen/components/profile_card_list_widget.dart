@@ -40,10 +40,18 @@ class ProfileCardList extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  return ProfileCard(
-                      appController: appController,
-                      profileModelList: snapshot.data!,
-                      index: index);
+                  return GestureDetector(
+                    onTap: () {
+                      appController.updateSelectedIndex(index + 1);
+                      // appController.setSelectedIndexId(index + 1);
+                      // appController.changeColorSchemePrimary(
+                      //     Color(int.parse(snapshot.data![index].color!)));
+                    },
+                    child: ProfileCard(
+                        appController: appController,
+                        profileModelList: snapshot.data!,
+                        index: index),
+                  );
                 });
           }),
     );

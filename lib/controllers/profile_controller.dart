@@ -3,10 +3,6 @@ import 'package:klimbb148/models/profile_model.dart';
 import 'package:klimbb148/services/isar_db.dart';
 
 class ProfileController extends ChangeNotifier {
-  ProfileController() {
-    // getprofileModelList();
-  }
-
   String _errorText = "";
   String get errorText => _errorText;
   void setErrorText(String value) {
