@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
 import 'package:klimbb148/controllers/app_controller.dart';
 import 'package:klimbb148/screens/first_launch_screen/first_launch_screen.dart';
 import 'package:klimbb148/screens/home_screen/home_screen.dart';

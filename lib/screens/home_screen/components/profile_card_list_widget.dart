@@ -43,9 +43,6 @@ class ProfileCardList extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       appController.updateSelectedIndex(index + 1);
-                      // appController.setSelectedIndexId(index + 1);
-                      // appController.changeColorSchemePrimary(
-                      //     Color(int.parse(snapshot.data![index].color!)));
                     },
                     child: ProfileCard(
                         appController: appController,
