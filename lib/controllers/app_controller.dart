@@ -108,8 +108,16 @@ class AppController extends ChangeNotifier {
   }
 
   void addDefaultProfile() {
+    ProfileModel defaultProfileModel = ProfileModel(
+      lat: 0,
+      lng: 0,
+      fontSize: 12,
+      color: "0xFF4E342E",
+    );
     IsarService().saveProfiles(
-        ProfileModel(lat: 0, lng: 0, fontSize: 12, color: "0xFF4E342E"));
+      defaultProfileModel,
+    );
+    updateSelectedIndex(1);
   }
 }
 

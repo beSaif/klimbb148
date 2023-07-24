@@ -27,8 +27,10 @@ class HomeScreen extends StatelessWidget {
             title: const Text("Profile List"),
             actions: [
               IconButton(
-                  onPressed: () {
-                    isarService.cleanDb();
+                  onPressed: () async {
+                    isarService.cleanDb().then((value) {
+                      appController.addDefaultProfile();
+                    });
                   },
                   icon: const Icon(Icons.delete)),
               IconButton(

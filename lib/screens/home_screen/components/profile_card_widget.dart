@@ -40,7 +40,10 @@ class ProfileCard extends StatelessWidget {
                                 color: appController
                                     .themeData.colorScheme.tertiary)),
                     const Spacer(),
-                    Text("Profile Details",
+                    Text(
+                        index + 1 == appController.selectedIndexId
+                            ? "Selected"
+                            : "Profile Details",
                         style: appController.themeData.textTheme.bodyMedium!
                             .copyWith(
                                 color: appController
