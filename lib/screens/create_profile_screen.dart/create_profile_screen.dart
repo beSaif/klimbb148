@@ -27,162 +27,168 @@ class CreateProfileScreen extends StatelessWidget {
       return Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Material(
-                elevation: 4,
-                borderRadius: borderRadius3,
-                child: Container(
-                  // height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: BoxDecoration(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Material(
+                    elevation: 4,
                     borderRadius: borderRadius3,
-                    color: appController.themeData.colorScheme.primary,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        // AppBar
-                        Row(
+                    child: Container(
+                      // height: MediaQuery.of(context).size.height * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: borderRadius3,
+                        color: appController.themeData.colorScheme.primary,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            IconButton(
-                              icon: const Icon(Icons.arrow_back),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                profileController.resetCreateProfile();
-                              },
-                            ),
-                            Center(
-                              child: Text(
-                                "Create Profile",
-                                style: appController
-                                    .themeData.textTheme.bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const Divider(
-                          color: Colors.white,
-                        ),
-
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  TextField(
-                                      controller:
-                                          profileController.latController,
-                                      style: appController
-                                          .themeData.textTheme.bodyMedium,
-                                      decoration: inputDecoration.copyWith(
-                                        labelText: "Latitude",
-                                      )),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  TextField(
-                                    controller: profileController.lngController,
+                            // AppBar
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_back),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    profileController.resetCreateProfile();
+                                  },
+                                ),
+                                Center(
+                                  child: Text(
+                                    "Create Profile",
                                     style: appController
                                         .themeData.textTheme.bodyMedium,
-                                    decoration: inputDecoration.copyWith(
-                                        labelText: "Longitude"),
                                   ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  TextField(
-                                    controller:
-                                        profileController.fontSizeController,
-                                    style: appController
-                                        .themeData.textTheme.bodyMedium,
-                                    decoration: inputDecoration.copyWith(
-                                        labelText: "Font Size"),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  ColorPickerWidget(
-                                    appController: appController,
-                                    profileController: profileController,
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
+                                ),
+                              ],
+                            ),
+
+                            const Divider(
+                              color: Colors.white,
+                            ),
+
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                          ),
-                                          onPressed: () {
-                                            profileController
-                                                .resetCreateProfile();
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text(
-                                            "Cancel",
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ),
-                                        ),
+                                      TextField(
+                                          controller:
+                                              profileController.latController,
+                                          style: appController
+                                              .themeData.textTheme.bodyMedium,
+                                          decoration: inputDecoration.copyWith(
+                                            labelText: "Latitude",
+                                          )),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      TextField(
+                                        controller:
+                                            profileController.lngController,
+                                        style: appController
+                                            .themeData.textTheme.bodyMedium,
+                                        decoration: inputDecoration.copyWith(
+                                            labelText: "Longitude"),
                                       ),
                                       const SizedBox(
-                                        width: 15,
+                                        height: 15,
                                       ),
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.green,
+                                      TextField(
+                                        controller: profileController
+                                            .fontSizeController,
+                                        style: appController
+                                            .themeData.textTheme.bodyMedium,
+                                        decoration: inputDecoration.copyWith(
+                                            labelText: "Font Size"),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      ColorPickerWidget(
+                                        appController: appController,
+                                        profileController: profileController,
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.white,
+                                              ),
+                                              onPressed: () {
+                                                profileController
+                                                    .resetCreateProfile();
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text(
+                                                "Cancel",
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
                                           ),
-                                          onPressed: () {
-                                            if (!profileController
-                                                .checkProfileValidity()) {
-                                              return;
-                                            }
-                                            profileController
-                                                .createProfile()
-                                                .then((value) {
-                                              Navigator.pop(context);
-                                              profileController
-                                                  .resetCreateProfile();
-                                            });
-                                          },
-                                          child: const Text("Save"),
-                                        ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.green,
+                                              ),
+                                              onPressed: () {
+                                                if (!profileController
+                                                    .checkProfileValidity()) {
+                                                  return;
+                                                }
+                                                profileController
+                                                    .createProfile()
+                                                    .then((value) {
+                                                  Navigator.pop(context);
+                                                  profileController
+                                                      .resetCreateProfile();
+                                                });
+                                              },
+                                              child: const Text("Save"),
+                                            ),
+                                          ),
+                                        ],
                                       ),
+                                      profileController.errorText.isNotEmpty
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                profileController.errorText,
+                                                style: appController.themeData
+                                                    .textTheme.bodySmall!
+                                                    .copyWith(
+                                                        color: appController
+                                                            .themeData
+                                                            .colorScheme
+                                                            .error),
+                                              ),
+                                            )
+                                          : const SizedBox(),
                                     ],
                                   ),
-                                  profileController.errorText.isNotEmpty
-                                      ? Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            profileController.errorText,
-                                            style: appController
-                                                .themeData.textTheme.bodySmall!
-                                                .copyWith(
-                                                    color: appController
-                                                        .themeData
-                                                        .colorScheme
-                                                        .error),
-                                          ),
-                                        )
-                                      : const SizedBox(),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
+                            const SizedBox(height: 2),
                           ],
                         ),
-                        const SizedBox(height: 2),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       );
