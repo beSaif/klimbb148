@@ -89,6 +89,7 @@ class AppController extends ChangeNotifier {
     bool? isFirstLaunch = prefs.getBool('isFirstLaunch');
     if (isFirstLaunch == null) {
       prefs.setBool('isFirstLaunch', false);
+      addDefaultProfile();
       return true;
     }
     return false;

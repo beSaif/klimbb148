@@ -11,7 +11,6 @@ class Initial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppController>(builder: (context, appController, child) {
       if (appController.isFirstLaunch) {
-        appController.addDefaultProfile();
         return const FirstLaunchScreen();
       } else if (appController.isLoading) {
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
